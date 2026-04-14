@@ -4,12 +4,16 @@ import uuid
 import boto3
 from flask import Flask, request, render_template, jsonify
 from botocore.exceptions import ClientError
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
-SOURCE_BUCKET = 'amzn-pixilate-bucket-source'
-PROCESSED_BUCKET = 'amzn-pixalate-bucket-2'
-AWS_REGION = 'us-east-1'  
+
+SOURCE_BUCKET = os.environ['SOURCE_BUCKET']
+PROCESSED_BUCKET = os.environ['PROCESSED_BUCKET']
+AWS_REGION = os.environ.get('AWS_DEFAULT_REGION', 'us-east-1')
+
 
 s3_client = boto3.client('s3', region_name=AWS_REGION)
 
