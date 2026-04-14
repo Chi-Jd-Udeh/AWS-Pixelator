@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pixelator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+  <header>
+    <h1>PIXELATOR</h1>
+    <p>32×32 pixel art generator — powered by AWS Lambda</p>
+  </header>
+
+  <div class="card">
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="fileInput" accept="image/*" />
+      <div class="icon">⬛</div>
+      <p>DROP AN IMAGE HERE OR CLICK TO BROWSE</p>
+      <div class="filename" id="filename"></div>
+    </div>
+
+    <button id="uploadBtn" disabled>PIXELATE →</button>
+
+    <div id="status"></div>
+
+    <div id="results">
+      <div class="img-box">
+        <label>Original <span>↓</span></label>
+        <img id="originalImg" src="" alt="Original" />
+      </div>
+      <div class="img-box">
+        <label>Pixelated <span>32×32</span></label>
+        <img id="pixelatedImg" src="" alt="Pixelated" />
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
