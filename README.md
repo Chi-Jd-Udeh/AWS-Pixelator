@@ -2,7 +2,7 @@
 
 A serverless image pixelation pipeline built on AWS. Upload any image and receive a pixelated 32×32 version — powered by S3, Lambda, and IAM working together automatically.
 
-🔗 **Live Demo:** [https://aws-pixelator2.onrender.com/](https://aws-pixelator2.onrender.com/)
+🔗 **Live Demo:** [[https://aws-pixelator2.onrender.com/](https://pixelator-jdthebean.pythonanywhere.com/)]([https://aws-pixelator2.onrender.com/](https://pixelator-jdthebean.pythonanywhere.com/))
 
 ---
 
