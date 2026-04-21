@@ -14,6 +14,7 @@ A serverless image pixelation pipeline built on AWS. Upload any image and receiv
 4. Lambda processes the image and writes a pixelated version to the **processed S3 bucket**
 5. The app polls the processed bucket until the output file appears
 6. **Presigned URLs** for both the original and pixelated images are generated and returned to the user
+7. <img width="1607" height="808" alt="Architect" src="https://github.com/Chi-Jd-Udeh/Image-box/blob/main/pup_pixliate.png?raw=true" />
 
 ---
 
