@@ -23,28 +23,7 @@ A serverless image pixelation pipeline built on AWS. Upload any image and receiv
 
 ## AWS Architecture
 
-```
-User
- │
- ▼
-Flask App (Render)
- │
- │  upload_fileobj()
- ▼
-S3 Source Bucket
- │
- │  S3 Event Trigger (ObjectCreated)
- ▼
-AWS Lambda Function
- │
- │  writes pixelated-32x32-{filename}
- ▼
-S3 Processed Bucket
- │
- │  generate_presigned_url()
- ▼
-User (views both images)
-```
+<img width="1607" height="808" alt="Architect" src="https://github.com/Chi-Jd-Udeh/Image-box/blob/main/aws_pixleator_diagram.png?raw=true"/>
 
 ---
 
