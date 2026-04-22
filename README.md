@@ -74,10 +74,6 @@ Lambda charges on two dimensions: **requests** and **compute duration**.
 | Duration (x86) | $0.0000166667 per GB-second |
 | Duration (ARM/Graviton2) | ~20% cheaper |
 
-- Compute: 10,000 × 0.5s × (128/1024) GB = 625 GB-seconds → within the 400,000 free tier → **$0.00**
-
-
-
 ---
 
 ### S3 Costs
