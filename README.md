@@ -60,16 +60,7 @@ Key Lambda configuration:
 
 ## AWS Cost Breakdown
 
-This project uses two AWS services that incur costs: **S3** and **Lambda**. Both have generous free tiers, making this project essentially free at low to moderate usage.
-
-### AWS Free Tier (Always Free)
-
-| Service | Free Tier |
-|---------|-----------|
-| Lambda | 1 million requests/month + 400,000 GB-seconds of compute |
-| S3 | 5 GB storage + 20,000 GET requests + 2,000 PUT requests/month |
-
-For a personal project or low-traffic demo, you will likely stay within the free tier indefinitely.
+This project uses two AWS services that incur costs: **S3** and **Lambda**.
 
 ---
 
@@ -83,13 +74,8 @@ Lambda charges on two dimensions: **requests** and **compute duration**.
 | Duration (x86) | $0.0000166667 per GB-second |
 | Duration (ARM/Graviton2) | ~20% cheaper |
 
-Each image upload triggers one Lambda invocation. Image processing (pixelation) is CPU-bound and typically completes in under a second at 128–256 MB memory.
-
-**Example:** 10,000 uploads/month at 128 MB memory, ~500ms per execution:
-- Requests: 10,000 → well within the 1M free tier → **$0.00**
 - Compute: 10,000 × 0.5s × (128/1024) GB = 625 GB-seconds → within the 400,000 free tier → **$0.00**
 
-Lambda only becomes billable at significant scale. At 128 MB memory and 500ms duration, the free tier covers roughly **800,000 uploads/month** before any charges apply.
 
 
 ---
@@ -104,16 +90,12 @@ S3 charges across three dimensions: **storage**, **requests**, and **data transf
 |-------|-------|
 | First 50 TB/month | $0.023 per GB |
 
-Images are small (typically under 5 MB each). Storing 10,000 images at ~2 MB average = ~20 GB = **~$0.46/month** after the free tier.
-
 **Requests:**
 
 | Request Type | Price |
 |-------------|-------|
 | PUT, COPY, POST, LIST | $0.005 per 1,000 |
 | GET, HEAD | $0.0004 per 1,000 |
-
-Each upload generates: 1 PUT to the source bucket (Flask) + 1 PUT to the processed bucket (Lambda) + multiple HEAD requests (polling) + 2 GET requests (presigned URLs). At low volume this is negligible — 10,000 uploads ≈ **~$0.10–$0.20** in request charges.
 
 **Data Transfer:**
 
@@ -122,8 +104,6 @@ Each upload generates: 1 PUT to the source bucket (Flask) + 1 PUT to the process
 | Inbound (uploads to S3) | Free |
 | S3 → Lambda (same region) | Free |
 | S3 → Internet (presigned URL downloads) | $0.09/GB after first 100 GB/month free |
-
-Since images are served to users via presigned URLs, outbound data transfer is the most likely cost to grow with usage. At ~2 MB per image, the 100 GB free tier covers roughly **50,000 image views/month** before egress charges apply.
 
 ---
 
@@ -147,17 +127,6 @@ AWS-Pixelator/
 ├── .gitignore
 └── templates/
     └── index.html       # Upload UI
-```
-
----
-
-## Dependencies
-
-```
-flask
-boto3
-python-dotenv
-gunicorn
 ```
 
 ---
